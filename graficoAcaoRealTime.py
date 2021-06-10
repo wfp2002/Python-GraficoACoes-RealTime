@@ -5,10 +5,10 @@ from datetime import datetime
 import pandas as pd
 import requests
 
-fig = plt.figure(figsize=(12,6), facecolor='#FAFAFA')
+fig = plt.figure(figsize=(10,2), facecolor='#FAFAFA')
+
 ax1 = fig.add_subplot(121) #121 = 1 linha, 2 Colunas, indice 1 ou seja primeiro grafico
 ax2 = fig.add_subplot(122) #122 = 1 linha, 2 Colunas, indice 2 ou seja segundo grafico
-
 #Criando o DF vazio com as colunas abaixo
 df =  pd.DataFrame(columns=['data', 'seed', 'bnb'])
 
@@ -29,7 +29,7 @@ def animate(i):
     #Colocando a info coletada e a data dentro do DataFrame
     df = df.append({'data': data, 'seed': seed, 'bnb': bnb}, ignore_index=True)
 
-    if len(df) == 11: #Deixando apenas 10 registros no Dataframe para exibit no grafico
+    if len(df) == 16: #Deixando apenas 15 registros no Dataframe para exibit no grafico
         df = df.drop(0) #Deletando registro index(0) o mais antigo
         df = df.reset_index(drop=True) #Refazendo o index
 
@@ -67,5 +67,9 @@ def animate(i):
     ax2.plot(xs, ybnb)
     
 #Chamando a funcao animation 
-ani = animation.FuncAnimation(fig, animate, interval=10000) #interval=10000 Atualiza de 10  em 10 segundos
+ani = animation.FuncAnimation(fig, animate, interval=15000) #interval=15000 Atualiza de 15 em 15 segundos
+
+#Inserindo ajustes para melhor visualizacao os valores podem ser obtidos direto na feramenta de ajustes no grafico gerado.
+#Faca os ajustes em tempo real usando a ferramenta depois passe os valores para essas variaveis.
+plt.subplots_adjust(left=0.05, bottom=0.7, right=0.97, top=0.95, wspace=0.25, hspace=0.2)
 plt.show()
