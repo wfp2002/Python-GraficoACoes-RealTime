@@ -31,7 +31,7 @@ def animate(i):
     labelrotation = 70
     labelsize = 8
     percentualMinMax = 0.05
-    AnchoredTextSize = 10
+    anchorTextSize = 10
     lineSize = 0.5
     
     reqSEED = requests.get('https://bscscan.com/token/0x40b34cc972908060d6d527276e17c105d224559d') #SEED
@@ -50,8 +50,8 @@ def animate(i):
         df = df.drop(0) #Deletando registro index(0) o mais antigo
         df = df.reset_index(drop=True) #Refazendo o index
     
+    print()
     print(df)   
-    print('------------------------------------------------------------------------')
 
     #Definindo os percentuais para gerar a legenda do eixo y, ou seja, o grafico ira compreender de 5% acima a 5% abaixo do preco para gerar a escala do eixo y Min e Max
     seedMin = float(df.seed.min() - (df.seed.min() * percentualMinMax))
@@ -76,7 +76,7 @@ def animate(i):
     ax1.set_title('SEED')
     ax1.set_ylabel("VALOR EM DOLAR")
     ax1.plot(df.hora, df.seed)
-    ax1.add_artist(AnchoredText('Valor: $'+str(round(seed,2)), loc=2, prop=dict(size=AnchoredTextSize, bbox=props),frameon=False))  
+    ax1.add_artist(AnchoredText('Valor: $'+str(round(seed,2)), loc=2, prop=dict(size=anchorTextSize, bbox=props),frameon=False))  
     ax1.yaxis.set_major_formatter(FormatStrFormatter('%.2f')) #Formatando eixo x para 2 casas decimais
     
     #Dados do grafico 2 BNB
@@ -86,7 +86,7 @@ def animate(i):
     ax2.set_title('BNB')
     ax2.set_ylabel("VALOR EM DOLAR")
     ax2.plot(df.hora, df.bnb)
-    ax2.add_artist(AnchoredText('Valor: $'+str(round(bnb,2)), loc=2, prop=dict(size=AnchoredTextSize, bbox=props),frameon=False)) 
+    ax2.add_artist(AnchoredText('Valor: $'+str(round(bnb,2)), loc=2, prop=dict(size=anchorTextSize, bbox=props),frameon=False)) 
     ax2.yaxis.set_major_formatter(FormatStrFormatter('%.2f')) #Formatando eixo x para 2 casas decimais
 
     #Dados do grafico 1 BTC
@@ -96,7 +96,7 @@ def animate(i):
     ax3.set_title('BTC')
     ax3.set_ylabel("VALOR EM DOLAR")
     ax3.plot(df.hora, df.btc)
-    ax3.add_artist(AnchoredText('Valor: $'+str(round(btc,2)), loc=2, prop=dict(size=AnchoredTextSize, bbox=props),frameon=False)) 
+    ax3.add_artist(AnchoredText('Valor: $'+str(round(btc,2)), loc=2, prop=dict(size=anchorTextSize, bbox=props),frameon=False)) 
     ax3.yaxis.set_major_formatter(FormatStrFormatter('%.0f')) #Formatando eixo x para 2 casas decimais 
     
     #Dados do grafico 2 ADA
@@ -106,7 +106,7 @@ def animate(i):
     ax4.set_title('ADA')
     ax4.set_ylabel("VALOR EM DOLAR")
     ax4.plot(df.hora, df.ada)
-    ax4.add_artist(AnchoredText('Valor: $'+str(round(ada,2)), loc=2, prop=dict(size=AnchoredTextSize, bbox=props),frameon=False))   
+    ax4.add_artist(AnchoredText('Valor: $'+str(round(ada,2)), loc=2, prop=dict(size=anchorTextSize, bbox=props),frameon=False))   
     ax4.yaxis.set_major_formatter(FormatStrFormatter('%.2f')) #Formatando eixo x para 2 casas decimais 
 
 #Chamando a funcao animation 
