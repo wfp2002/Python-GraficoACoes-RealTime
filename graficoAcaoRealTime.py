@@ -7,6 +7,7 @@ from matplotlib.offsetbox import AnchoredText
 from matplotlib.ticker import FormatStrFormatter
 
 fig = plt.figure(figsize=(10,2), facecolor='#FAFAFA')
+fig.suptitle('GRAFICO DAS ULTIMAS 15 COTACOES', fontsize=16)
 
 #2,2,1
 #R,C,I (Row, Column, Index)
@@ -39,7 +40,7 @@ def animate(i):
     if len(df) == 16: #Deixando apenas 15 registros no Dataframe para exibit no grafico
         df = df.drop(0) #Deletando registro index(0) o mais antigo
         df = df.reset_index(drop=True) #Refazendo o index
-        
+    
     print(df)   
     print('--------------------------------------------------------')
 
@@ -104,9 +105,12 @@ def animate(i):
     ax4.yaxis.set_major_formatter(FormatStrFormatter('%.2f')) #Formatando eixo x para 2 casas decimais 
     
 #Chamando a funcao animation 
-ani = animation.FuncAnimation(fig, animate, interval=20000) #interval=15000 Atualiza de 20 em 20 segundos
+ani = animation.FuncAnimation(fig, animate, interval=15000) #interval=15000 Atualiza de 15 em 15 segundos
 
 #Inserindo ajustes para melhor visualizacao os valores podem ser obtidos direto na feramenta de ajustes no grafico gerado.
 #Faca os ajustes em tempo real usando a ferramenta depois passe os valores para essas variaveis.
 plt.subplots_adjust(left=0.07, bottom=0.2, right=0.97, top=0.85, wspace=0.20, hspace=0.75)
+
+#plt.get_current_fig_manager().full_screen_toggle() #Abre o grafico em FullScreen sem opcao de minimizar e maximizar
+plt.get_current_fig_manager().window.state('zoomed') #Abre o grafico em FullScreen com opcao de minimizar e maximizar
 plt.show()
