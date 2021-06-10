@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-from matplotlib import style
 from datetime import datetime
 import pandas as pd
 import requests
@@ -15,10 +14,7 @@ df =  pd.DataFrame(columns=['data', 'seed', 'bnb'])
 #funcao animate que sera chamada pela funcao animation do matplotlib
 def animate(i):
     global df #Definindo global para usar o dataframe criado fora da funcao
-    xs = [] #lista do eixo x
-    yseed = [] #lista do eixo y seed
-    ybnb = [] #lista do eixo y bnb
-
+    
     r = requests.get('https://bscscan.com/token/0x40b34cc972908060d6d527276e17c105d224559d') #SEED
     r2 = requests.get('https://bscscan.com/token/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c') #BNB
     
@@ -32,12 +28,6 @@ def animate(i):
     if len(df) == 16: #Deixando apenas 15 registros no Dataframe para exibit no grafico
         df = df.drop(0) #Deletando registro index(0) o mais antigo
         df = df.reset_index(drop=True) #Refazendo o index
-
-    #Fazendo iteracao no dataframe para gravar nas listas
-    for index, _ in df.iterrows():
-            xs.append(str(df.data[index]))
-            yseed.append(float(df.seed[index]))
-            ybnb.append(float(df.bnb[index]))
         
     print(df)        
     
@@ -55,8 +45,8 @@ def animate(i):
     ax1.grid(color = "gainsboro", linestyle='--', linewidth=0.5)
     ax1.set_title('SEED')
     ax1.set_ylabel("VALOR EM DOLAR")
-    ax1.plot(xs, yseed)
-
+    ax1.plot(df.data, df.seed)
+    
     #Dados do grafico 2 BNB
     ax2.text(0.05, 0.95, 'Valor: $'+str(bnb), transform=ax2.transAxes, fontsize=14,verticalalignment='top', bbox=props)
     ax2.set_ylim(df.bnb.min()-1,df.bnb.max()+1)
@@ -64,7 +54,7 @@ def animate(i):
     ax2.grid(color = "gainsboro", linestyle='--', linewidth=0.5)
     ax2.set_title('BNB')
     ax2.set_ylabel("VALOR EM DOLAR")
-    ax2.plot(xs, ybnb)
+    ax2.plot(df.data, df.bnb)
     
 #Chamando a funcao animation 
 ani = animation.FuncAnimation(fig, animate, interval=15000) #interval=15000 Atualiza de 15 em 15 segundos
