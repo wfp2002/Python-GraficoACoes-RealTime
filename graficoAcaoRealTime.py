@@ -104,7 +104,7 @@ def animate(i):
     ax4.yaxis.set_major_formatter(FormatStrFormatter('%.2f')) #Formatando eixo x para 2 casas decimais 
     
 #Chamando a funcao animation 
-ani = animation.FuncAnimation(fig, animate, interval=15000) #interval=15000 Atualiza de 15 em 15 segundos
+ani = animation.FuncAnimation(fig, animate, interval=20000) #interval=15000 Atualiza de 20 em 20 segundos
 
 #Inserindo ajustes para melhor visualizacao os valores podem ser obtidos direto na feramenta de ajustes no grafico gerado.
 #Faca os ajustes em tempo real usando a ferramenta depois passe os valores para essas variaveis.
