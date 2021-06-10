@@ -67,5 +67,5 @@ def animate(i):
     ax2.plot(xs, ybnb)
     
 #Chamando a funcao animation 
-ani = animation.FuncAnimation(fig, animate, interval=3000)
+ani = animation.FuncAnimation(fig, animate, interval=10000) #interval=10000 Atualiza de 10  em 10 segundos
 plt.show()
